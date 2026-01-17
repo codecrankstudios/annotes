@@ -1,0 +1,75 @@
+name: Build Binaries
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            artifact_name: annotes-linux
+            asset_name: annotes-linux
+            mime_type: application/x-executable
+          - os: windows-latest
+            artifact_name: annotes-windows
+            asset_name: annotes.exe
+            mime_type: application/vnd.microsoft.portable-executable
+          - os: macos-latest
+            artifact_name: annotes-macos
+            asset_name: Annotes.app
+            mime_type: application/zip
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.12"
+
+    - name: Install uv
+      run: pip install uv
+
+    - name: Install dependencies
+      run: |
+        uv sync
+        uv pip install pyinstaller
+
+    - name: Build with PyInstaller
+      run: |
+        # Run PyInstaller using module syntax to ensure it uses the uv environment
+        uv run -m PyInstaller annotes.spec
+
+    - name: Zip macOS App
+      if: matrix.os == 'macos-latest'
+      run: |
+        cd dist
+        zip -r Annotes.app.zip Annotes.app
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: |
+          dist/annotes
+          dist/annotes.exe
+          dist/Annotes.app.zip
+        if-no-files-found: error
+
+    - name: Upload Release Asset
+      if: github.event_name == 'release'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          dist/annotes
+          dist/annotes.exe
+          dist/Annotes.app.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
