@@ -3,7 +3,7 @@ from pathlib import Path
 import logging
 
 # Setup path
-sys.path.insert(0, "/home/prestige/Documents/sangam/karyashala/annotes/src")
+sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 def test_imports():
     print("Testing Imports...")
