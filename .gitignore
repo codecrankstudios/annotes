@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.venv/
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+src/app.log
+notes/annotes.log
+
+# User Data
+notes/
+!notes/ref_prompt.md
+!notes/ref_langingpage.js
+
+# Testing / Large Files
+test/*.pdf
+test/*.zip
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
