@@ -1,0 +1,120 @@
+2025-11-25 00:20:16,978 - INFO - Opened PDF file: /home/prestige/Documents/sangam/karyashala/annotes/test/UPSC Syllabus.pdf
+2025-11-25 00:20:16,979 - INFO - Annotations found in the document.
+2025-11-25 00:20:17,005 - INFO - Opened PDF file: /home/prestige/Documents/sangam/karyashala/annotes/test/Ember - Anthropology (pg.689).pdf
+2025-11-25 00:20:17,006 - INFO - Processing PDF: Ember - Anthropology (pg.689).pdf
+2025-11-25 00:20:17,006 - INFO - Skipping Ember - Anthropology (pg.689).pdf because annotation file is up-to-date: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -Ember - Anthropology (pg.689).md
+2025-11-25 00:20:17,008 - INFO - Opened PDF file: /home/prestige/Documents/sangam/karyashala/annotes/test/UPSC Syllabus.pdf
+2025-11-25 00:20:17,009 - INFO - Processing PDF: UPSC Syllabus.pdf
+2025-11-25 00:20:17,009 - INFO - Skipping UPSC Syllabus.pdf because annotation file is up-to-date: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 21:50:02,081 - INFO - Processing PDF: Ember - Anthropology (pg.689).pdf
+2026-01-12 22:34:03,591 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-12 22:34:17,368 - INFO - File moved/renamed detected: /home/prestige/Documents/sangam/karyashala/annotes/test/UPSC Syllabus.pdf
+2026-01-12 22:34:17,390 - INFO - File modified detected: /home/prestige/Documents/sangam/karyashala/annotes/test/UPSC Syllabus.pdf
+2026-01-12 22:34:19,391 - INFO - Processing PDF: UPSC Syllabus.pdf
+2026-01-12 22:34:19,702 - INFO - Generated Markdown length: 1728 chars
+2026-01-12 22:34:19,702 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:34:19,703 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:36:28,734 - INFO - File moved/renamed detected: /home/prestige/Documents/sangam/karyashala/annotes/test/UPSC Syllabus.pdf
+2026-01-12 22:36:28,747 - INFO - File modified detected: /home/prestige/Documents/sangam/karyashala/annotes/test/UPSC Syllabus.pdf
+2026-01-12 22:36:30,748 - INFO - Processing PDF: UPSC Syllabus.pdf
+2026-01-12 22:36:31,080 - INFO - Generated Markdown length: 1746 chars
+2026-01-12 22:36:31,080 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:36:31,081 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:36:41,935 - INFO - File moved/renamed detected: /home/prestige/Documents/sangam/karyashala/annotes/test/UPSC Syllabus.pdf
+2026-01-12 22:36:41,947 - INFO - File modified detected: /home/prestige/Documents/sangam/karyashala/annotes/test/UPSC Syllabus.pdf
+2026-01-12 22:36:43,948 - INFO - Processing PDF: UPSC Syllabus.pdf
+2026-01-12 22:36:44,342 - INFO - Generated Markdown length: 2081 chars
+2026-01-12 22:36:44,342 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:36:44,343 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:36:53,751 - INFO - File moved/renamed detected: /home/prestige/Documents/sangam/karyashala/annotes/test/UPSC Syllabus.pdf
+2026-01-12 22:36:53,773 - INFO - File modified detected: /home/prestige/Documents/sangam/karyashala/annotes/test/UPSC Syllabus.pdf
+2026-01-12 22:36:55,774 - INFO - Processing PDF: UPSC Syllabus.pdf
+2026-01-12 22:36:56,199 - INFO - Generated Markdown length: 2144 chars
+2026-01-12 22:36:56,200 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:36:56,200 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:39:10,417 - INFO - Processing PDF: Ember - Anthropology (pg.689).pdf
+2026-01-12 22:39:22,546 - INFO - Generated Markdown length: 25219 chars
+2026-01-12 22:39:22,546 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -Ember - Anthropology (pg.689).md
+2026-01-12 22:39:22,547 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -Ember - Anthropology (pg.689).md
+2026-01-12 22:39:22,583 - INFO - Processing PDF: UPSC Syllabus.pdf
+2026-01-12 22:39:22,947 - INFO - Generated Markdown length: 2144 chars
+2026-01-12 22:39:22,947 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:39:22,948 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:45:33,032 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-12 22:50:43,380 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-12 22:50:59,234 - INFO - Processing PDF: Ember - Anthropology (pg.689).pdf
+2026-01-12 22:51:14,087 - INFO - Generated Markdown length: 25219 chars
+2026-01-12 22:51:14,087 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -Ember - Anthropology (pg.689).md
+2026-01-12 22:51:14,090 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -Ember - Anthropology (pg.689).md
+2026-01-12 22:51:14,162 - INFO - Processing PDF: UPSC Syllabus.pdf
+2026-01-12 22:51:14,750 - INFO - Generated Markdown length: 2144 chars
+2026-01-12 22:51:14,751 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:51:14,751 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-12 22:53:28,680 - INFO - Stopping SystemWatcher...
+2026-01-12 22:58:16,198 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-12 23:00:04,201 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 18:52:13,959 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 18:56:35,761 - INFO - Processing PDF: Ember - Anthropology (pg.689).pdf
+2026-01-15 18:56:52,878 - INFO - Generated Markdown length: 25219 chars
+2026-01-15 18:56:52,878 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -Ember - Anthropology (pg.689).md
+2026-01-15 18:56:52,879 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -Ember - Anthropology (pg.689).md
+2026-01-15 18:56:52,959 - INFO - Processing PDF: UPSC Syllabus.pdf
+2026-01-15 18:56:53,644 - INFO - Generated Markdown length: 2144 chars
+2026-01-15 18:56:53,644 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-15 18:56:53,644 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-15 18:58:01,240 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 19:10:00,059 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 21:03:02,997 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 21:09:36,428 - INFO - Stopping SystemWatcher...
+2026-01-15 21:10:09,164 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 21:10:49,983 - INFO - Processing PDF: Ember - Anthropology (pg.689).pdf
+2026-01-15 21:11:24,681 - INFO - Generated Markdown length: 25456 chars
+2026-01-15 21:11:24,682 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -Ember - Anthropology (pg.689).md
+2026-01-15 21:11:24,683 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -Ember - Anthropology (pg.689).md
+2026-01-15 21:11:24,853 - INFO - Processing PDF: UPSC Syllabus.pdf
+2026-01-15 21:11:25,830 - INFO - Generated Markdown length: 2139 chars
+2026-01-15 21:11:25,832 - INFO - Pushing to connector: FileConnector OutputPath: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-15 21:11:25,833 - INFO - Note saved to file: /home/prestige/Documents/sangam/karyashala/annotes/notes/Notes -UPSC Syllabus.md
+2026-01-15 21:12:27,819 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 21:51:57,359 - INFO - Stopping SystemWatcher...
+2026-01-15 21:51:59,906 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 21:54:13,576 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 21:58:47,890 - INFO - Stopping SystemWatcher...
+2026-01-15 21:58:47,894 - INFO - Stopping SystemWatcher...
+2026-01-15 21:58:51,299 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:12:50,257 - INFO - Stopping SystemWatcher...
+2026-01-15 22:12:55,101 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:14:06,266 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:15:17,575 - INFO - Stopping SystemWatcher...
+2026-01-15 22:15:18,624 - INFO - Stopping SystemWatcher...
+2026-01-15 22:15:18,628 - INFO - Stopping SystemWatcher...
+2026-01-15 22:15:23,334 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:29:27,673 - INFO - Stopping SystemWatcher...
+2026-01-15 22:29:54,290 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:31:20,428 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:35:04,394 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:37:39,444 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:41:07,056 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:41:24,824 - INFO - Stopping SystemWatcher...
+2026-01-15 22:41:25,933 - INFO - Stopping SystemWatcher...
+2026-01-15 22:41:25,936 - INFO - Stopping SystemWatcher...
+2026-01-15 22:41:26,931 - INFO - Stopping SystemWatcher...
+2026-01-15 22:41:26,932 - INFO - Stopping SystemWatcher...
+2026-01-15 22:41:26,932 - INFO - Stopping SystemWatcher...
+2026-01-15 22:41:27,892 - INFO - Stopping SystemWatcher...
+2026-01-15 22:41:27,894 - INFO - Stopping SystemWatcher...
+2026-01-15 22:41:29,018 - INFO - Stopping SystemWatcher...
+2026-01-15 22:41:29,021 - INFO - Stopping SystemWatcher...
+2026-01-15 22:44:00,509 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:44:29,388 - INFO - Stopping SystemWatcher...
+2026-01-15 22:44:29,394 - INFO - Stopping SystemWatcher...
+2026-01-15 22:44:34,327 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:45:19,481 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:46:00,160 - INFO - Stopping SystemWatcher...
+2026-01-15 22:46:00,163 - INFO - Stopping SystemWatcher...
+2026-01-15 22:46:02,452 - INFO - Stopping SystemWatcher...
+2026-01-15 22:46:04,637 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:47:36,398 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-15 22:48:44,066 - INFO - Starting SystemWatcher on: /home/prestige/Documents/sangam/karyashala/annotes/test
+2026-01-17 21:01:26,569 - INFO - Test Log Entry 1
+2026-01-17 21:01:26,569 - INFO - Test Log Entry 2

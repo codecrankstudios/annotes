@@ -1,0 +1,40 @@
+pdf_folder: "The local path where Annotes monitors for new or updated PDFs. High-performance scanning ensures only changed files are processed."
+notes_folder: "The destination directory for generated Markdown notes. Perfect for pointing directly to your Obsidian vault's 'Inbox' or 'Inbox/PDF' folders."
+scheduler_settings:
+  interval_minutes: "Determines the background sync frequency. Set lower (e.g., 5-10) for real-time feel, or higher for system efficiency."
+  auto_start_on_boot: "Enables the background daemon to start immediately upon system login, ensuring you never miss an annotation."
+output_settings:
+  annotated_file_format: "Primary file extension. We recommend .md for maximum compatibility with note-taking apps like Obsidian, Logseq, or Roam."
+  annotated_file_prefix: "The string prepended to your PDF's title. Use 'Notes - ' or '@' for better organizational sorting."
+  annotated_file_suffix: "Optional string appended to the filename. Useful for versioning or adding context."
+  annotated_file_tags: "A global list of tags applied to every note. These help in filtering and searching within your Knowledge Management system."
+  page_link_settings:
+    include_page_links: "Automatically injects deep links back to the specific PDF page. Essential for source-checking your thoughts later."
+    visible_links: "Toggle whether page links appear as active text or hidden metadata."
+    link_style: "Specifies the syntax: Wikilinks are natively handled by Obsidian; Markdown links are universal across most editors."
+  yaml_front_matter_settings:
+    include_yaml_front_matter: "Creates a standard YAML block at the top of notes. Crucial for Obsidian's Dataview plugin and advanced metadata management."
+    yaml_front_matter_keys: "Defines WHICH fields appear in the YAML. Common defaults include 'title', 'tags', and 'created'."
+markdown_settings:
+  tab_size: "Standard indentation spacing. Usually 4 for traditionalists, 2 for modern minimalist layouts."
+  linking_style: "Global preference for link syntax. Wikilinks ([[]]) are highly recommended for local-first knowledge bases."
+  bold_highlights: "Automatically wraps extracted highlight text in **double asterisks** for high visual contrast."
+  italic_comments: "Formats your personal PDF comments in *italics*, clearly separating source material from your own thoughts."
+  preserve_indentation: "Maintains any existing indentation structure from the PDF, preserving hierarchical thoughts."
+annotation_settings:
+  symbol_indent: "The character used for bullet points. High-impact choices include '-' or '>'. Example: '-' results in '- [Highlight Text]'."
+  symbol_add_to_last_highlight: "A specialized symbol to merge a comment with the preceding highlight without a break. Example: Inserting '+' at the start of a comment merges it as 'HighlightTextComment'."
+  symbol_add_text: "Separator symbol used when joining multi-line annotations or complex block extracts. Example: '/' joins lines as 'Line 1 / Line 2'."
+  symbol_quote: "The trigger token(s) for Blockquotes. Multiple triggers can be defined using comma separation. Example: '>>, .quote' results in '> [Highlight Text]' for either trigger."
+  symbol_todo: "The trigger token(s) for Task items. Multiple triggers can be defined using comma separation. Example: '.todo, - [ ]' creates a '- [ ]' checkbox for either trigger."
+  symbol_heading: "The trigger token(s) for Section Headings. Multiple triggers can be defined using comma separation. Example: '.h1, #' elevates a highlight to a Markdown header (level 1) for either trigger."
+  annotated_notes_section_title: "The primary heading for the extraction body. Defaults to 'Notes' or 'Reading Highlights'."
+notification_settings:
+  show_on_sync: "Triggers a system-level notification upon every successful PDF sync session."
+  show_on_error: "Provides immediate visual feedback if a file fails to process, allowing for quick troubleshooting."
+  sound_enabled: "Adds an audible 'ping' to sync events. Best kept 'Off' for deep-work sessions."
+info_section_settings:
+  include_info_section: "Appends a statistics block (total pages, annotation count) to the top of your note."
+  info_section_title: "Heading title for the document metadata section."
+  info_section_items: "Select exactly which statistics (e.g., 'Total Annotations', 'Processed At') are included in the summary."
+debug_mode: "Enables verbose logging to app.log. Recommended only when encountering unexpected behavior."

@@ -1,0 +1,43 @@
+pdf_folder: /home/prestige/Documents/sangam/karyashala/annotes/test
+notes_folder: /home/prestige/Documents/sangam/karyashala/annotes/notes
+output_settings:
+  annotated_file_format: .md
+  annotated_file_prefix: Notes -
+  annotated_file_suffix: ''
+  annotated_file_tags:
+  - annotated
+  - pdf_notes
+  page_link_settings:
+    include_page_links: true
+    visible_links: false
+  yaml_front_matter_settings:
+    include_yaml_front_matter: true
+    yaml_front_matter_keys:
+    - title
+    - created
+    - modified
+    - tags
+markdown_settings:
+  tab_size: 4
+  linking_style: wikilinks
+date_format_settings:
+  date_format: '%Y-%m-%d'
+  time_format: '%H:%M'
+  datetime_format: '%Y-%m-%d %H:%M'
+annotation_settings:
+  symbol_indent: '-'
+  symbol_add_to_last_highlight: +
+  symbol_add_text: /
+  annotated_notes_section_title: Notes
+info_section_settings:
+  include_info_section: true
+  info_section_title: Document Info
+  info_section_items:
+  - Title
+  - Pages
+  - Annotated pages
+  - Total annotations
+  - First annotated on page
+  - Last annotated on page
+  - First annotated at
+  - Last annotated at
