@@ -1,5 +1,5 @@
-pdf_folder: /home/prestige/Documents/sangam/karyashala/annotes/test
-notes_folder: /home/prestige/Documents/sangam/karyashala/annotes/notes
+pdf_folder: ./PDFs
+notes_folder: ./Notes
 output_settings:
   annotated_file_format: .md
   annotated_file_prefix: Notes -
