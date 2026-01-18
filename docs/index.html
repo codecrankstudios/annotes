@@ -267,13 +267,13 @@
         <div id="scroll-trigger-area" class="h-screen w-full relative">
             <div class="h-full flex flex-col items-center justify-center overflow-hidden px-4">
 
-                <div class="text-center mb-4 md:mb-6 transition-all duration-500 z-50 mt-16 md:mt-0" id="sync-header">
+                <div class="text-center mb-2 md:mb-4 transition-all duration-500 z-50 mt-16 md:mt-0" id="sync-header">
                     <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-2">The Moment of Sync.</h2>
                     <p class="text-gray-500 text-sm md:text-lg">Scroll to watch Annotes bring order to your chaos.</p>
                 </div>
 
                 <div id="stage"
-                    class="relative w-full max-w-4xl h-[55vh] md:h-[600px] glass rounded-[2rem] md:rounded-[3rem] border-white/10 note-preview-shadow overflow-hidden flex flex-col">
+                    class="relative w-full max-w-4xl h-[60vh] md:h-[700px] glass rounded-[2rem] md:rounded-[3rem] border-white/10 note-preview-shadow overflow-hidden flex flex-col">
                     <div id="order-scroll-wrapper" class="opacity-0 flex flex-col p-6 md:p-12 text-left h-full w-full">
                         <div class="markdown-preview" id="note-content-area">
                             <div
@@ -293,21 +293,28 @@
                                     alt="Knowledge Distillation Diagram" class="w-full h-auto object-cover" />
                             </div>
 
-                            <h2>## 1. Core Methodology</h2>
+                            <h2>## 2. Methodology</h2>
                             <ul>
                                 <li>Heuristic approach to mapping</li>
                                 <li>Shortcut connections bypass weights</li>
-                                <li>Semantic chunking for retrieval</li>
                             </ul>
 
-                            <h2>## 2. Conclusion</h2>
-                            <p>Transition from chaos to order is seamless.</p>
+                            <h2>## 3. Results & Analysis</h2>
+                            <p>Experimental validation shows a 15% improvement in convergence speed.</p>
+                            <ul>
+                                <li><strong>Accuracy:</strong> 98.4% on validation set</li>
+                                <li><strong>Latency:</strong> Reduced by 200ms</li>
+                            </ul>
+
+                            <h2>## 4. Conclusion</h2>
+                            <p>Transition from chaos to order is seamless. The distillation process preserves semantic
+                                integrity while discarding noise.</p>
                         </div>
                     </div>
                 </div>
 
                 <div id="status-pill"
-                    class="mt-4 md:mt-6 px-4 py-1.5 rounded-full glass border border-sky-500/20 mono font-bold text-sky-500 tracking-[0.2em] md:tracking-[0.4em] uppercase text-[9px] opacity-0">
+                    class="mt-2 md:mt-4 px-4 py-1.5 rounded-full glass border border-sky-500/20 mono font-bold text-sky-500 tracking-[0.2em] md:tracking-[0.4em] uppercase text-[9px] opacity-0">
                     Syncing...
                 </div>
             </div>
@@ -501,7 +508,7 @@
 
             // PHASE 3: THE READING (40% -> 100%)
             // Content scrolls inside the fixed box
-            const scrollDist = isMobile ? -350 : -450;
+            const scrollDist = isMobile ? -600 : -750;
             syncTL.fromTo("#note-content-area",
                 { y: 0 },
                 {
