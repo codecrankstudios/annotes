@@ -299,12 +299,72 @@
                                 <li>Shortcut connections bypass weights</li>
                             </ul>
 
-                            <h2>## 3. Results & Analysis</h2>
-                            <p>Experimental validation shows a 15% improvement in convergence speed.</p>
+                            <h2>## 5. Future Directions</h2>
+                            <p>Integrating transformer-based attention mechanisms to further refine the "Moment of
+                                Sync". Early tests suggest a 40% reduction in cognitive load.</p>
                             <ul>
-                                <li><strong>Accuracy:</strong> 98.4% on validation set</li>
-                                <li><strong>Latency:</strong> Reduced by 200ms</li>
+                                <li><strong>Phase 1:</strong> Adaptive highlighting based on user intent.</li>
+                                <li><strong>Phase 2:</strong> Real-time collaboration in the chaos layer.</li>
                             </ul>
+
+                            <h2>## 6. Appendix A: Data Sources</h2>
+                            <p>The dataset comprises 100,000 PDF annotations collected from diverse academic fields,
+                                ensuring robustness across domains.</p>
+
+                            <h2>## 7. References</h2>
+                            <ul>
+                                <li>[1] Hinton et al., "Distilling the Knowledge in a Neural Network"</li>
+                                <li>[2] Vaswani et al., "Attention Is All You Need"</li>
+                                <li>[3] <i>Annotes User Study 2025</i> - Internal Report</li>
+                            </ul>
+
+                            <!-- FILLER CONTENT to ensure infinite scroll feel -->
+                            <h2>## 8. Extended Analysis (Supplementary)</h2>
+                            <p>Further analysis of the "Chaos Layer" indicates that 90% of user cognition is spent
+                                filtering noise. By offloading this to the Annotes engine, we free up significant mental
+                                bandwidth.</p>
+                            <ul>
+                                <li>Noise reduction ratio: 10:1</li>
+                                <li>Signal boost: +50% clarity</li>
+                            </ul>
+
+                            <h2>## 9. Case Study: Legal Documents</h2>
+                            <p>In high-density legal contracts, Annotes identified key clauses with 99.2% accuracy,
+                                bypassing boilerplate text entirely. This represents a paradigm shift in automated legal
+                                review.</p>
+
+                            <h2>## 10. Architectural Overview</h2>
+                            <p>The system is built on a Rust-based core for zero-latency parsing, coupled with a local
+                                LLM for semantic understanding. This hybrid approach ensures privacy and speed.</p>
+                            <ul>
+                                <li>Core: Rust (tokio/axum)</li>
+                                <li>Inference: ONNX Runtime (quantized)</li>
+                            </ul>
+
+                            <h2>## 11. User Feedback Loop</h2>
+                            <p>"It feels like magic," reports a senior researcher at CERN. "I highlight a PDF, and a
+                                structured note just appears. I don't know how I lived without it."</p>
+
+                            <h2>## 12. Security Protocols</h2>
+                            <p>All extraction happens locally. Your PDFs never leave your machine. The 'Sync' is purely
+                                internal, organizing your thoughts into your local file system.</p>
+
+                            <h2>## 13. The "Zen" Mode</h2>
+                            <p>When enabled, Annotes suppresses all non-essential UI elements, allowing for deep work
+                                states during heavy reading sessions.</p>
+
+                            <h2>## 14. Performance Metrics</h2>
+                            <ul>
+                                <li>Cold start: < 200ms</li>
+                                <li>Memory footprint: ~45MB</li>
+                                <li>Battery impact: Negligible</li>
+                            </ul>
+
+                            <h2>## 15. Final Thoughts</h2>
+                            <p>We believe that reading is the interface to the mind. Annotes is just the driver. Enjoy
+                                the sync.</p>
+
+                            <p class="mono text-xs opacity-50 mt-8">--- End of extraction stream ---</p>
 
                             <h2>## 4. Conclusion</h2>
                             <p>Transition from chaos to order is seamless. The distillation process preserves semantic
@@ -508,7 +568,10 @@
 
             // PHASE 3: THE READING (40% -> 100%)
             // Content scrolls inside the fixed box
-            const scrollDist = isMobile ? -600 : -750;
+            // TRICK: We scroll LESS than the total height of the content.
+            // Content is now huge (~2000px). Scroll is limited to -700px.
+            // Result: User never sees the bottom. Infinite feel.
+            const scrollDist = isMobile ? -500 : -700;
             syncTL.fromTo("#note-content-area",
                 { y: 0 },
                 {
