@@ -10,7 +10,6 @@ block_cipher = None
 # Format: (source_path, dest_path)
 datas = [
     ('src/templates', 'templates'),
-    ('src/static', 'static'),
     ('src/config.default.yaml', '.'),
     ('src/logo.png', '.'), 
     ('src/app_icon.png', '.')
