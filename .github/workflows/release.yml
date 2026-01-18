@@ -43,29 +43,27 @@ jobs:
           uv pip install pyinstaller
 
       - name: Build with PyInstaller
-        # Run PyInstaller using module syntax to ensure it uses the uv environment
-        run: uv run --project src/ -m PyInstaller annotes.spec
-
-      - name: Check Build Output
-        run: ls -R dist
+        working-directory: ./src
+        run: uv run -m PyInstaller annotes.spec
 
       - name: Prepare Artifacts (Linux)
         if: runner.os == 'Linux'
         run: |
-          mv dist/annotes ./annotes-linux
+          mv src/dist/annotes ./annotes-linux
           chmod +x ./annotes-linux
 
       - name: Prepare Artifacts (Windows)
         if: runner.os == 'Windows'
         run: |
-          Move-Item dist/annotes.exe ./annotes-windows.exe
+          if (Test-Path src/dist/annotes.exe) {
+            Move-Item src/dist/annotes.exe ./annotes-windows.exe
+          }
 
       - name: Prepare Artifacts (macOS)
         if: runner.os == 'macOS'
         run: |
-          # Compress the .app bundle
-          cd dist
-          zip -r ../annotes-macos.zip Annotes.app
+          cd src/dist
+          zip -r ../../annotes-macos.zip Annotes.app
 
       - name: Upload Actions Artifacts
         uses: actions/upload-artifact@v4
@@ -75,11 +73,16 @@ jobs:
             annotes-linux
             annotes-windows.exe
             annotes-macos.zip
+          if-no-files-found: warn
 
-      - name: Upload to GitHub Release
+      - name: Create Global Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
         with:
+          tag_name: latest
+          name: "Latest Rolling Build"
+          body: "Automatic build from the latest commit on main."
+          prerelease: true
           files: |
             annotes-linux
             annotes-windows.exe
