@@ -274,8 +274,7 @@
 
                 <div id="stage"
                     class="relative w-full max-w-4xl h-[55vh] md:h-[600px] glass rounded-[2rem] md:rounded-[3rem] border-white/10 note-preview-shadow overflow-hidden flex flex-col">
-                    <div id="order-scroll-wrapper"
-                        class="opacity-0 translate-y-32 flex flex-col p-6 md:p-12 text-left h-full w-full">
+                    <div id="order-scroll-wrapper" class="opacity-0 flex flex-col p-6 md:p-12 text-left h-full w-full">
                         <div class="markdown-preview" id="note-content-area">
                             <div
                                 class="mono text-sky-500 text-[10px] md:text-xs mb-6 md:mb-8 pb-4 md:pb-8 border-b border-white/10 opacity-70">
@@ -440,72 +439,74 @@
                 elements.push(el);
             }
 
-            // 3. SYNC SCROLL ANIMATION
+            // 3. SYNC SCROLL ANIMATION - "THE BIG BANG REVERSE"
             const syncTL = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#scroll-trigger-area",
                     start: "top top",
                     end: "bottom bottom",
-                    scrub: 1,
+                    scrub: 1.5, // Smoother scrub for the heavy transition
                     fastScrollEnd: true,
                 }
             });
 
-            // 1. CHAOS DEBLUR & CENTER (0.0 -> 2.5)
-            // Move to center, remove blur, but keep visible initially
+            // PHASE 1: THE IMPLOSION (0% -> 30%)
+            // Chaos elements get sucked into the singularity (center)
             syncTL.to(elements, {
                 x: window.innerWidth / 2,
                 y: window.innerHeight / 2,
-                rotation: 0,
-                filter: "blur(0px)", // DEBLUR EFFECT
-                opacity: 1,
-                scale: 1,
-                duration: 2.5,
-                stagger: 0.005,
-                ease: "power2.inOut",
-                overwrite: true
+                scale: 0.1,       // Shrink to a point
+                opacity: 0,       // Fade out as they merge
+                filter: "blur(0px)", // Sharpen as they converge
+                duration: 3.0,    // Defines the 30% mark relative to timeline
+                ease: "power4.in", // Accelerate into the center
+                stagger: {
+                    amount: 0.5,
+                    from: "random"
+                }
             }, 0);
 
-            // 2. BOX ENTERS (1.0 -> 2.5)
-            // Rises up to meet the converging icons
-            syncTL.to("#order-scroll-wrapper", {
-                opacity: 1,
-                y: 0,
-                duration: 1.5,
-                ease: "power2.out"
-            }, 1.0);
-
-            // 3. HEADER FADE OUT (1.0 -> 2.0)
+            // Header moves away quickly
             syncTL.to("#sync-header", {
+                y: -100,
                 opacity: 0,
-                scale: 0.9,
-                duration: 1
-            }, 1.0);
+                scale: 0.8,
+                duration: 2.0
+            }, 0);
 
-            // 4. THE CONVERSION (2.5 -> 3.0)
-            // Icons vanish (become notes) just as box is settled
-            syncTL.to(elements, {
-                opacity: 0,
-                scale: 0,
-                duration: 0.5,
-                ease: "back.in(1.7)"
-            }, 2.5);
+            // PHASE 2: THE IGNITION (30% -> 40%)
+            // The Notes Box explodes OUT from the center
+            // It replaces the chaos elements
+            syncTL.fromTo("#order-scroll-wrapper",
+                {
+                    scale: 0,
+                    opacity: 0,
+                    transformOrigin: "center center"
+                },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 1.0,
+                    ease: "back.out(1.7)" // "Pop" effect
+                }, 3.0); // Starts right when implosion finishes
 
-            // 5. STATUS PILL APPEARS (2.5 -> 3.0)
+            // Status Pill Appears
             syncTL.to("#status-pill", {
                 opacity: 1,
                 y: -10,
-                duration: 0.5
-            }, 2.5);
+                duration: 1.0
+            }, 3.5);
 
-            // 6. NOTES SCROLL INTERNALLY (3.0 -> 10.0)
-            // Now that box is fixed, content scrolls
+            // PHASE 3: THE READING (40% -> 100%)
+            // Content scrolls inside the fixed box
             const scrollDist = isMobile ? -350 : -450;
-            syncTL.to("#note-content-area", {
-                y: scrollDist,
-                duration: 7,
-                ease: "none"
-            }, 3.0);
+            syncTL.fromTo("#note-content-area",
+                { y: 0 },
+                {
+                    y: scrollDist,
+                    duration: 6.0,
+                    ease: "none"
+                }, 4.0);
         };
     </script>
 </body>
