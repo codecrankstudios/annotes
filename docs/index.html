@@ -264,8 +264,8 @@
 
     <!-- The Great Sync Section -->
     <section id="workflow" class="relative">
-        <div id="scroll-trigger-area" class="h-[350vh] md:h-[450vh] w-full relative">
-            <div class="sticky top-0 h-[100dvh] flex flex-col items-center justify-center overflow-hidden px-4">
+        <div id="scroll-trigger-area" class="h-screen w-full relative">
+            <div class="h-full flex flex-col items-center justify-center overflow-hidden px-4">
 
                 <div class="text-center mb-4 md:mb-6 transition-all duration-500 z-50 mt-16 md:mt-0" id="sync-header">
                     <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-2">The Moment of Sync.</h2>
@@ -444,8 +444,10 @@
                 scrollTrigger: {
                     trigger: "#scroll-trigger-area",
                     start: "top top",
-                    end: "bottom bottom",
-                    scrub: 1.5, // Smoother scrub for the heavy transition
+                    end: "+=4000", // Virtual scroll distance: 4000px of animation
+                    scrub: 1,
+                    pin: true,     // Critical Fix: Pins the content during animation
+                    anticipatePin: 1,
                     fastScrollEnd: true,
                 }
             });
