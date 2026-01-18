@@ -1,0 +1,65 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        # installing dependencies from pyproject.toml and pyinstaller
+        run: |
+          python -m pip install --upgrade pip
+          pip install ./src
+          pip install pyinstaller
+
+      - name: Build with PyInstaller
+        # Run PyInstaller using the spec file.
+        run: pyinstaller annotes.spec
+
+      - name: Prepare Artifacts (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          mv dist/annotes annotes-linux
+          chmod +x annotes-linux
+
+      - name: Prepare Artifacts (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          Move-Item dist/annotes.exe annotes-windows.exe
+
+      - name: Prepare Artifacts (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          # Compress the .app bundle
+          cd dist
+          zip -r ../annotes-macos.zip Annotes.app
+
+      - name: Upload Artifacts
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            annotes-linux
+            annotes-windows.exe
+            annotes-macos.zip
