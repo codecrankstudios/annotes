@@ -548,9 +548,9 @@
                 opacity: 0,       // Fade out as they merge
                 filter: "blur(0px)", // Sharpen as they converge
                 duration: 3.0,    // Defines the 30% mark relative to timeline
-                ease: "power4.in", // Accelerate into the center
+                ease: "power1.out", // Start moving immediately
                 stagger: {
-                    amount: 0.5,
+                    amount: 0.8,
                     from: "random"
                 }
             }, 0);
