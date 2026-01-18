@@ -40,13 +40,13 @@ jobs:
       - name: Prepare Artifacts (Linux)
         if: runner.os == 'Linux'
         run: |
-          mv dist/annotes annotes-linux
+          mv dist/annotes ./annotes-linux
           chmod +x annotes-linux
 
       - name: Prepare Artifacts (Windows)
         if: runner.os == 'Windows'
         run: |
-          Move-Item dist/annotes.exe annotes-windows.exe
+          Move-Item dist/annotes.exe ./annotes-windows.exe
 
       - name: Prepare Artifacts (macOS)
         if: runner.os == 'macOS'
@@ -55,7 +55,16 @@ jobs:
           cd dist
           zip -r ../annotes-macos.zip Annotes.app
 
-      - name: Upload Artifacts
+      - name: Upload Actions Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: annotes-${{ runner.os }}
+          path: |
+            annotes-linux
+            annotes-windows.exe
+            annotes-macos.zip
+
+      - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
@@ -63,3 +72,5 @@ jobs:
             annotes-linux
             annotes-windows.exe
             annotes-macos.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
