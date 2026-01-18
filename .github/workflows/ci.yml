@@ -19,6 +19,7 @@ jobs:
         cache: 'pip' # caching pip dependencies
 
     - name: Install dependencies
+      working-directory: ./src
       run: |
         python -m pip install --upgrade pip
         pip install uv
@@ -33,9 +34,9 @@ jobs:
         DISPLAY: :0 
       run: |
         # Run test/test_release.py
-        # We might need to ensure dependencies are in path or use 'uv run'
-        uv run python test/test_release.py
+        # Use uv from src project context but run test script from root
+        uv run --project src/ python test/test_release.py
 
     - name: Run Multi-Trigger Test
       run: |
-        uv run python test/test_multi_triggers.py
+        uv run --project src/ python test/test_multi_triggers.py
