@@ -373,11 +373,8 @@
                     </div>
                 </div>
 
-                <div id="status-pill"
-                    class="mt-2 md:mt-4 px-4 py-1.5 rounded-full glass border border-sky-500/20 mono font-bold text-sky-500 tracking-[0.2em] md:tracking-[0.4em] uppercase text-[9px] opacity-0">
-                    Syncing...
-                </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -558,13 +555,6 @@
                     duration: 1.0,
                     ease: "back.out(1.7)" // "Pop" effect
                 }, 3.0); // Starts right when implosion finishes
-
-            // Status Pill Appears
-            syncTL.to("#status-pill", {
-                opacity: 1,
-                y: -10,
-                duration: 1.0
-            }, 3.5);
 
             // PHASE 3: THE READING (40% -> 100%)
             // Content scrolls inside the fixed box
