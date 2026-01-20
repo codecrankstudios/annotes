@@ -38,9 +38,8 @@ jobs:
         uses: astral-sh/setup-uv@v5
 
       - name: Install dependencies
-        run: |
-          uv sync --project src/
-          uv pip install pyinstaller
+        working-directory: ./src
+        run: uv sync
 
       - name: Build with PyInstaller
         working-directory: ./src
