@@ -1,27 +1,18 @@
-# 🎉 Annotes v1.0.0: The First Official Release
+# Release v1.0.1 (Hotfix)
 
-We are thrilled to announce the first official release of **Annotes**, the tool that bridges the gap between your PDFs and your second brain.
+This is a critical hotfix for v1.0.0 that resolves a crash on startup for standalone binary releases (Linux, Windows, macOS).
 
-## ✨ Highlight Features
+## 🐛 Bug Fixes
+- **Fixed Crash on Startup**: Resolved `Configuration file not found` error by implementing robust path resolution for persistent configuration.
+- **Improved Persistence**: Configuration (`config.yaml`) and logs (`app.log`) are now stored in the user's home directory (`~/.annotes`) instead of the temporary execution folder.
+- **Fixed Asset Loading**: The web dashboard now correctly loads templates and icons from within the bundled executable.
 
-*   **Intelligent Extraction**: Automatically pulls highlights, underlines, and comments from your PDFs.
-*   **Obsidian-Ready**: Generates clean, formatted Markdown notes tailored for Obsidian.
-*   **Web Dashboard**: A beautiful local interface (`http://localhost:8080`) to manage settings and view logs.
-*   **Cross-Platform**: Native support and tray icons for **Windows**, **macOS**, and **Linux**.
-*   **Background Watcher**: Drop a PDF in your watch folder, and the note appears instantly.
-
-## 📦 What's Included
-
-*   **Windows**: Standalone `.exe` installer.
-*   **macOS**: Native `.app` bundle.
-*   **Linux**: Single-file executable.
-
-## 🚀 Getting Started
-
-1.  Download the asset for your OS below.
-2.  Run the application.
-3.  Open the dashboard from the system tray icon.
-4.  Set your folders and start highlighting!
+## 📦 Upgrading
+- **Linux/macOS/Windows**: Download the new binary from this release.
+- **Note**: This update will generate a new `config.yaml` in your user folder (`~/.annotes`). If you had previous settings, you may need to re-apply them via the dashboard.
 
 ---
-*Built with ❤️ for knowledge workers everywhere.*
+
+# Release v1.0.0 (Original)
+
+(See previous release notes for feature details)

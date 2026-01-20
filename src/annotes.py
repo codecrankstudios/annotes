@@ -27,7 +27,9 @@ def setup_logging():
             root.removeHandler(handler)
 
     # 1. File Handler (app.log)
-    file_handler = logging.FileHandler("app.log", mode="a", encoding="utf-8")
+    # Use persistent log path from settings
+    log_file = settings.USER_DATA_DIR / "app.log"
+    file_handler = logging.FileHandler(log_file, mode="a", encoding="utf-8")
     file_handler.setLevel(logging.INFO)
     file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
     

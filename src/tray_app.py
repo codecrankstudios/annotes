@@ -20,18 +20,18 @@ from watcher import SystemWatcher
 
 class TrayApp:
     def __init__(self):
-        self.base_dir = Path(__file__).parent
+        # Initialize Settings & Logging FIRST to ensure paths are set
+        settings.initialize()
+        annotes.setup_logging()
+
+        # Use User Data Dir for lock file (persistent path), not temp bundle path
+        self.lock_file = settings.USER_DATA_DIR / "annotes.lock"
         
         # Single Instance Lock
-        self.lock_file = self.base_dir / "annotes.lock"
         if self.check_lock():
             print(f"❌ Annotes is already running (PID: {self.get_lock_pid()}).")
             print("💡 Tip: Use 'pkill -f tray_app.py' to stop the background process.")
             sys.exit(0)
-
-        # Initialize Settings & Logging
-        settings.initialize()
-        annotes.setup_logging()
         
         self.watcher = None
         self.icon = None
@@ -69,7 +69,9 @@ class TrayApp:
 
     def create_image(self):
         """Load icon or generate default."""
-        icon_path = self.base_dir / "app_icon.png"
+        # Use settings.get_resource_path to find icon in bundle
+        icon_path = settings.get_resource_path("app_icon.png")
+        
         if icon_path.exists():
             return Image.open(icon_path)
         

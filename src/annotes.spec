@@ -11,6 +11,8 @@ block_cipher = None
 datas = [
     ('templates', 'templates'),
     ('config.default.yaml', '.'),
+    ('settings_docs.yaml', '.'),
+    ('../USER_MANUAL.md', '.'),
     ('logo.png', '.'), 
     ('app_icon.png', '.')
 ]

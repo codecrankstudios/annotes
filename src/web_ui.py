@@ -5,26 +5,36 @@ import time
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
+from fastapi.responses import HTMLResponse, JSONResponse, FileResponse, StreamingResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, ValidationError
 import uvicorn
 import webbrowser
 import threading
+import asyncio
 
 # Import project modules
 import settings
 import annotes
-import markdown # New dependency
+import markdown
 
-# Path Setup
-BASE_DIR = Path(__file__).parent
-CONFIG_PATH = BASE_DIR / "config.yaml"
-DOCS_PATH = BASE_DIR / "settings_docs.yaml"
+# --- Path Setup ---
+# Initialize settings to ensure USER_DATA_DIR is available
+settings.initialize()
+
+# Config & Data live in User Data Dir (Persistent)
+CONFIG_PATH = settings.USER_DATA_DIR / "config.yaml"
+LOG_PATH = settings.USER_DATA_DIR / "app.log"
+
+# Static Assets live in Resource Path (Bundled)
+TEMPLATES_DIR = settings.get_resource_path("templates")
+DOCS_PATH = settings.get_resource_path("settings_docs.yaml")
+MANUAL_PATH = settings.get_resource_path("USER_MANUAL.md")
+LOGO_PATH = settings.get_resource_path("app_icon.png")
 
 app = FastAPI(title="Annotes | Pro Dashboard")
-templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
+templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 # --- Simple Caching ---
 STATS_CACHE = {
@@ -36,18 +46,11 @@ CACHE_TTL = 10  # seconds
 # --- Pydantic Models ---
 class OutputSettings(BaseModel):
     annotated_file_tags: List[str] = Field(default_factory=list)
-    # can add more recursive models here as needed
 
 class AppSettings(BaseModel):
-    """
-    Validates key configuration fields. 
-    Note: Dynamic/nested dicts from the frontend form are harder to map 1:1 
-    without a complex nested model, so we do specific field validation.
-    """
     pdf_folder: str
     notes_folder: str
     
-    # Allow extra fields for now since the config is flexible
     class Config:
         extra = "allow" 
 
@@ -63,17 +66,14 @@ def save_yaml(path: Path, data: Dict[str, Any]):
 
 @app.get("/logo.png")
 async def get_logo():
-    # Serve the new icon file
-    logo_path = BASE_DIR / "app_icon.png"
-    if logo_path.exists():
-        return FileResponse(logo_path, media_type="image/png")
+    if LOGO_PATH.exists():
+        return FileResponse(LOGO_PATH, media_type="image/png")
     return JSONResponse({"error": "Logo not found"}, status_code=404)
 
 @app.get("/", response_class=HTMLResponse)
 @app.get("/settings", response_class=HTMLResponse)
 async def root(request: Request):
     """Dashboard Settings Page."""
-    # Ensure settings are loaded from disk to be fresh
     settings.initialize()
     config = settings.CONFIG
     docs = load_yaml(DOCS_PATH)
@@ -83,15 +83,8 @@ async def root(request: Request):
         "docs": docs
     })
 
-from fastapi.responses import HTMLResponse, JSONResponse, FileResponse, StreamingResponse
-import time
-import asyncio
-
-# ... (Imports remain the same) ...
-
 @app.get("/stats")
 async def get_stats():
-    # Refresh config for stats logic
     settings.initialize()
     
     pdf_folder = Path(settings.CONFIG.get("pdf_folder", "."))
@@ -100,27 +93,20 @@ async def get_stats():
     stats = {
         "pdfs": 0,
         "notes": 0,
-        "syncs": 0, # Calculated from memory logs for now, or could persist count
+        "syncs": 0,
         "errors": 0,
     }
     
-    # 1. Count PDFs
     try:
         if pdf_folder.exists():
             stats["pdfs"] = len(list(pdf_folder.glob("*.pdf")))
     except: pass
         
-    # 2. Count Notes
     try:
         if notes_folder.exists():
             stats["notes"] = len(list(notes_folder.glob("*.md")))
     except: pass
         
-    # 3. Memory Logs
-    # We don't read disk anymore for recent logs to save I/O
-    # Stats like total syncs/errors are harder to count without persistence, 
-    # so we'll just count what's in the buffer for "Recent Activity" context.
-    
     recent_logs = annotes.get_recent_logs()
     stats["recent_logs"] = recent_logs
     stats["syncs"] = sum(1 for line in recent_logs if "Synced:" in line)
@@ -132,58 +118,42 @@ async def get_stats():
 async def sse_endpoint(request: Request):
     """Server-Sent Events for real-time log streaming."""
     async def event_generator():
-        # Yield connection confirmation
         yield f"data: Connected to log stream\n\n"
-        
         last_index = len(annotes.LOG_BUFFER)
         
         while True:
             if await request.is_disconnected():
                 break
-                
             current_buffer = list(annotes.LOG_BUFFER)
             if len(current_buffer) > last_index:
-                # New logs arrived
                 new_logs = current_buffer[last_index:]
                 for log in new_logs:
-                    # Clean newlines for SSE format
                     clean_log = log.replace("\n", " ")
                     yield f"data: {clean_log}\n\n"
                 last_index = len(current_buffer)
-            
-            # Reset index if buffer rotated (shrunk effectively or wrapped)
             if len(current_buffer) < last_index:
                 last_index = 0
-                
             await asyncio.sleep(0.5)
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
 
 @app.get("/help", response_class=HTMLResponse)
 async def help_page(request: Request):
-    """Serves USER_MANUAL.md as HTML."""
-    manual_path = BASE_DIR.parent / "USER_MANUAL.md"
     html_content = ""
-    
-    if manual_path.exists():
-        with open(manual_path, "r", encoding="utf-8") as f:
+    if MANUAL_PATH.exists():
+        with open(MANUAL_PATH, "r", encoding="utf-8") as f:
             text = f.read()
-            # Convert Markdown to HTML
             html_body = markdown.markdown(text, extensions=['tables', 'fenced_code'])
             html_content = html_body
     else:
-        html_content = "<h1>Usage Manual Not Found</h1><p>Ensure USER_MANUAL.md exists in the root directory.</p>"
-        
+        html_content = "<h1>Usage Manual Not Found</h1><p>Ensure USER_MANUAL.md is bundled correctly.</p>"
     return templates.TemplateResponse("help.html", {"request": request, "content": html_content})
-
 
 @app.get("/export-logs")
 async def export_logs():
-    """Downloads the current app.log file."""
-    log_path = Path(__file__).parent / "app.log"
-    if log_path.exists():
+    if LOG_PATH.exists():
         return FileResponse(
-            path=log_path,
+            path=LOG_PATH,
             filename=f"annotes_debug_{int(time.time())}.log",
             media_type="text/plain"
         )
@@ -192,34 +162,23 @@ async def export_logs():
 @app.post("/save")
 async def save_settings(request: Request):
     form_data = await request.form()
-    
-    # Start with a fresh reload of the current config
     current_config = load_yaml(CONFIG_PATH)
-    
     new_config = dict(current_config)
-    
-    # Temporary dict to build flat key-values into nested struct for Pydantic validation if we wanted full schema
-    # For now, we will just injection-protect and basic-validate.
     
     for key, value in form_data.items():
         parts = key.split(".")
         ptr = new_config
-        
         try:
-            # Traversal
             for part in parts[:-1]:
                 if part not in ptr or not isinstance(ptr[part], dict):
                     ptr[part] = {}
                 ptr = ptr[part]
             
             field = parts[-1]
-            # Smart Type Detection & Conversion
-            # We look at the EXISTING value to determine type
             orig_val = ptr.get(field)
             
-            # Handle empty strings as None/Empty depending on type
             if value == "" and orig_val is not None and not isinstance(orig_val, (str, list)):
-                continue # Skip setting non-string fields to empty
+                continue 
                 
             if isinstance(orig_val, bool):
                 ptr[field] = (str(value).lower() in ['true', 'on', '1', 'yes'])
@@ -227,43 +186,29 @@ async def save_settings(request: Request):
                 try: ptr[field] = int(value)
                 except: pass
             elif isinstance(orig_val, list):
-                # Comma separated list from form
                 if isinstance(value, str):
                     ptr[field] = [item.strip() for item in value.split(",") if item.strip()]
             else:
-                # Default to string
                 ptr[field] = value
                 
         except Exception as e:
             logging.error(f"Config Injection Error for {key}: {e}")
 
-    # Validate critical fields with Pydantic
     try:
-        # We only strictly validate the top-level paths for now to prevent corruption
         AppSettings(
             pdf_folder=new_config.get("pdf_folder", ""),
             notes_folder=new_config.get("notes_folder", "")
         )
     except ValidationError as e:
-        return JSONResponse({
-            "status": "error",
-            "message": f"Validation Error: {str(e)}"
-        }, status_code=400)
+        return JSONResponse({"status": "error", "message": f"Validation Error: {str(e)}"}, status_code=400)
 
-    # Write back to disk
     save_yaml(CONFIG_PATH, new_config)
-    
-    # Reload global settings in memory
     settings.initialize()
     
-    return JSONResponse({
-        "status": "success", 
-        "message": "Configuration synchronized successfully."
-    })
+    return JSONResponse({"status": "success", "message": "Configuration synchronized successfully."})
 
 class Server(uvicorn.Server):
     def install_signal_handlers(self):
-        # Override to prevent secondary threads from hijacking Ctrl+C
         pass
 
 def run_server(port: int = 8080):
@@ -271,7 +216,7 @@ def run_server(port: int = 8080):
         app=app, 
         host="127.0.0.1", 
         port=port, 
-        log_level="warning", # Quieter console
+        log_level="warning",
         reload=False
     )
     server = Server(config=config)
