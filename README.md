@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="src/logo.png" width="128" height="128" alt="Annotes Logo">
+  <img src="src/logo.png" width="256" height="256" alt="Annotes Logo">
   <h1>Annotes</h1>
   <p><strong>Extract Highlights from PDFs into Obsidian-Ready Markdown Notes</strong></p>
 </div>
@@ -11,7 +11,7 @@
 ### 🎯 Smart Annotation Extraction
 - **Intelligent Highlight Recognition**: Automatically extracts highlights and underlines from PDFs
 - **Comment Preservation**: Captures author comments and notes attached to highlights
-- **A2O-Style Formatting**: Hierarchical indent/join/append formatting for clean, readable notes
+- **Hierarchical Formatting**: Uses smart indentation and joining for clean, structured notes
 - **Page References**: Optionally includes page links for quick navigation back to source
 
 ### 📊 Modern Web Dashboard
@@ -37,26 +37,40 @@
 - **Python 3.12+**
 - **uv** (Recommended) or pip
 
-### Installation
+### Installation & Usage
 
+#### Windows
+1.  **Download**: Get `annotes-windows.exe` from the [Latest Release](https://github.com/codecrankstudios/annotes/releases).
+2.  **Run**: Double-click the executable.
+3.  **Use**: 
+    - Look for the **blue "A" icon** in your system tray.
+    - Double-click the tray icon to open the **Web Dashboard** (`http://localhost:8080`).
+    - Configure your folders and drop in PDFs!
+
+#### macOS
+1.  **Download**: Get `annotes-macos.zip` from the [Latest Release](https://github.com/codecrankstudios/annotes/releases).
+2.  **Install**: Unzip the file and drag `Annotes.app` to your `Applications` folder.
+3.  **Run**: Open `Annotes` from Applications.
+    > **Note**: Since the app is not signed by Apple, you may need to right-click and select "Open", or go to System Settings > Privacy & Security to allow it to run the first time.
+
+#### Linux
+1.  **Download**: Get `annotes-linux` from the [Latest Release](https://github.com/codecrankstudios/annotes/releases).
+2.  **Permissions**: Make the file executable:
+    ```bash
+    chmod +x annotes-linux
+    ```
+3.  **Run**:
+    ```bash
+    ./annotes-linux
+    ```
+
+#### Running from Source (Developers)
+If you prefer to run the raw Python code:
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/annotes.git
+git clone https://github.com/codecrankstudios/annotes.git
 cd annotes/src
-
-# Run with uv (auto-installs dependencies)
 uv run tray_app.py
 ```
-
-### Usage
-
-1.  **Launch**: Run `uv run tray_app.py`.
-2.  **System Tray**: Look for the **blue "A" icon** in your system tray.
-3.  **Dashboard**: Double-click the tray icon to open the **Web Dashboard**.
-4.  **Configure**: Set your `PDF Watch Folder` and `Markdown Output Folder` in the Dashboard.
-5.  **Go**: Drop a PDF into your watch folder. It will be auto-processed!
-
----
 
 ## 📦 Building for Release
 
@@ -66,16 +80,22 @@ To build a standalone executable (no Python required for end-users), see [RELEAS
 
 ## 🤝 Contributing
 
-Annotes is built with:
+We welcome contributions to make Annotes better! 
+
+### How you can help:
+- **Report Bugs**: Found a PDF that doesn't parse correctly? Open an Issue!
+- **Suggest Features**: Have an idea for better note formatting? Let us know.
+- **Submit PRs**: 
+    1.  Fork the repository.
+    2.  Create a feature branch.
+    3.  Make your changes (see `src/config.yaml` and `src/formatter.py`).
+    4.  Submit a Pull Request.
+
+**Core Tech Stack**:
 - **FastAPI + Uvicorn**: Web Dashboard backend
 - **PyMuPDF (fitz)**: PDF parsing
 - **pystray**: System tray integration
 - **Watchdog**: File system monitoring
-
-To extend:
-1.  Edit `src/config.yaml` for new defaults.
-2.  Modify `src/formatter.py` for custom output styles.
-3.  Debug logs are available in the Dashboard or `src/app.log`.
 
 ---
 
