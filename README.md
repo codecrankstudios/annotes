@@ -64,6 +64,9 @@
     ./annotes-linux
     ```
     > **Tip**: On the first run, Annotes will automatically create a configuration directory at `~/.annotes` and default `PDFs` and `Notes` folders in your current directory. You can also run `./annotes-linux --init` to explicitly set up paths.
+    > 
+    > **Linux Tray Support**: If the tray icon doesn't appear or respond, ensure you have `libayatana-appindicator3-0` or `libappindicator3-1` installed. On Ubuntu/Debian: `sudo apt install libayatana-appindicator3-0`.
+
 
 
 #### Running from Source (Developers)

@@ -1,20 +1,23 @@
-# Release v1.0.2 (Stability & Setup)
+# Release v1.0.3 (Tray & UI Polish)
 
-This release focuses on improving the "out-of-the-box" experience by automating initial directory setup and path resolution.
+This release addresses issues with system tray icons and interactions, particularly on Linux.
 
 ## ✨ Improvements
-- **Automatic Folder Creation**: Resolves "Invalid PDF folder" error on first run by automatically creating `PDFs` and `Notes` directories if they are missing.
-- **Home Directory Support**: You can now use `~` in folder paths (e.g., `~/Documents/PDFs`).
-- **Initialization Command**: Added `--init` flag to binaries to explicitly set up the config directory and base folders.
+- **Optimized Tray Icons**: Icons are now automatically resized and converted to RGBA mode, fixing "solid block" rendering issues on many Linux desktop environments and Windows.
+- **Enhanced Reliability**: Improved error handling during icon loading and added a high-visibility fallback icon.
+- **Better UX**: Double-clicking the tray icon now correctly opens the Web Dashboard.
+- **Improved Logging**: Added detailed startup and runtime logging to help diagnose tray backend issues.
 
 ## 🐛 Bug Fixes
-- **Cross-Platform Stability**: Ensured folder creation and path expansion work consistently across Windows, macOS, and Linux.
+- **Linux Interactivity**: Fixed issues where right-clicking the tray icon would not open the menu in certain environments.
+- **Scaling Fixes**: Resolved issues where high-resolution icons caused the tray area to misbehave.
 
 ## 📦 Upgrading
 - **Linux/macOS/Windows**: Download the new binary from this release.
-- **Note**: If you already have `~/.annotes/config.yaml`, your existing settings will be preserved.
 
 ---
+
+# Release v1.0.2 (Stability & Setup)
 
 # Release v1.0.1 (Hotfix)
 
