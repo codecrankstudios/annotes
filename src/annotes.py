@@ -179,10 +179,33 @@ def process_pdf(pdf_path: str):
     write_notes_log(f"Synced: {pdf_basename} -> {annotated_file_path}", notes_folder)
     doc.close()
 
+import argparse
+
 def main():
+    parser = argparse.ArgumentParser(description="Annotes: PDF Annotation Extractor")
+    parser.add_argument("--scan", action="store_true", help="Perform a manual scan and exit")
+    parser.add_argument("--init", action="store_true", help="Initialize configuration and base folders")
+    args = parser.parse_args()
+
     setup_logging()
-    # Manual scan of all files
+    
+    if args.init:
+        print("🛠️  Annotes Initialization & Setup")
+        settings.initialize() # This now handles folder creation & path expansion
+        print(f"✅ Configuration directory: {settings.USER_DATA_DIR}")
+        print(f"📁 PDF Folder: {settings.CONFIG['pdf_folder']}")
+        print(f"📁 Notes Folder: {settings.CONFIG['notes_folder']}")
+        print("\n💡 You can change these in ~/.annotes/config.yaml or via the Web Dashboard.")
+        print("🚀 Installation / Setup complete.")
+        return
+
+    # Default behavior or --scan
     pdf_folder = Path(settings.CONFIG.get("pdf_folder"))
+    
+    if not pdf_folder.exists():
+        logging.error(f"PDF folder '{pdf_folder}' does not exist. Run with --init or check config.")
+        return
+
     pdf_files = get_pdf_files(pdf_folder)
     
     print(f"Scanning {len(pdf_files)} PDF files in {pdf_folder}...")
@@ -193,3 +216,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

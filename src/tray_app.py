@@ -153,6 +153,22 @@ class TrayApp:
 
         self.icon.run()
 
+import argparse
+
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Annotes: Tray Application")
+    parser.add_argument("--init", action="store_true", help="Initialize configuration and base folders")
+    args = parser.parse_args()
+
+    if args.init:
+        print("🛠️  Annotes Initialization & Setup")
+        settings.initialize()
+        print(f"✅ Configuration directory: {settings.USER_DATA_DIR}")
+        print(f"📁 PDF Folder: {settings.CONFIG['pdf_folder']}")
+        print(f"📁 Notes Folder: {settings.CONFIG['notes_folder']}")
+        print("\n🚀 Installation / Setup complete.")
+        sys.exit(0)
+
     app = TrayApp()
     app.run()
+

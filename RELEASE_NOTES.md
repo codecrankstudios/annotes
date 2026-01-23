@@ -1,3 +1,21 @@
+# Release v1.0.2 (Stability & Setup)
+
+This release focuses on improving the "out-of-the-box" experience by automating initial directory setup and path resolution.
+
+## ✨ Improvements
+- **Automatic Folder Creation**: Resolves "Invalid PDF folder" error on first run by automatically creating `PDFs` and `Notes` directories if they are missing.
+- **Home Directory Support**: You can now use `~` in folder paths (e.g., `~/Documents/PDFs`).
+- **Initialization Command**: Added `--init` flag to binaries to explicitly set up the config directory and base folders.
+
+## 🐛 Bug Fixes
+- **Cross-Platform Stability**: Ensured folder creation and path expansion work consistently across Windows, macOS, and Linux.
+
+## 📦 Upgrading
+- **Linux/macOS/Windows**: Download the new binary from this release.
+- **Note**: If you already have `~/.annotes/config.yaml`, your existing settings will be preserved.
+
+---
+
 # Release v1.0.1 (Hotfix)
 
 This is a critical hotfix for v1.0.0 that resolves a crash on startup for standalone binary releases (Linux, Windows, macOS).
@@ -14,5 +32,6 @@ This is a critical hotfix for v1.0.0 that resolves a crash on startup for standa
 ---
 
 # Release v1.0.0 (Original)
+
 
 (See previous release notes for feature details)

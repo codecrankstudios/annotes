@@ -63,6 +63,8 @@
     ```bash
     ./annotes-linux
     ```
+    > **Tip**: On the first run, Annotes will automatically create a configuration directory at `~/.annotes` and default `PDFs` and `Notes` folders in your current directory. You can also run `./annotes-linux --init` to explicitly set up paths.
+
 
 #### Running from Source (Developers)
 If you prefer to run the raw Python code:

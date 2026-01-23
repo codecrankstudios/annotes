@@ -64,3 +64,20 @@ def initialize():
         print("⚠️ Failed to load user config. Falling back to internal defaults (read-only mode).")
         default_config_path = get_resource_path("config.default.yaml")
         CONFIG = load_config(default_config_path)
+    
+    # --- AUTO-CREATE FOLDERS & EXPAND PATHS ---
+    if CONFIG:
+        for key in ["pdf_folder", "notes_folder"]:
+            path_str = CONFIG.get(key)
+            if path_str:
+                # Expand ~ if present
+                expanded_path = Path(path_str).expanduser()
+                CONFIG[key] = str(expanded_path)
+                
+                # Ensure the folder exists
+                if not expanded_path.exists():
+                    try:
+                        expanded_path.mkdir(parents=True, exist_ok=True)
+                        print(f"📁 Created missing {key}: {expanded_path}")
+                    except Exception as e:
+                        print(f"❌ Could not create {key} at {expanded_path}: {e}")
