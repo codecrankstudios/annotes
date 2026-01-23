@@ -12,11 +12,12 @@ Welcome to **Annotes**, your tool for bridging the gap between PDF reading and M
 3.  **System Tray**: You will see an **"A" icon** appear in your system tray (near the clock). The app is now running quietly in the background.
 
 ### 2. First-Time Setup
-1.  **Open Dashboard**: Double-click the tray icon (or right-click and select **Docs & Web Settings**).
-2.  **Configure Folders**:
+1.  **Automatic Setup**: On the first run, Annotes automatically creates its configuration directory (`~/.annotes`) and default `PDFs` and `Notes` folders in its current location.
+2.  **Open Dashboard**: Double-click the tray icon (or right-click and select **Docs & Web Settings**).
+3.  **Configure Folders**:
     - **PDF Watch Folder**: Browse/Paste the path to the folder where you keep your PDFs (e.g., `~/Documents/Papers`).
     - **Markdown Export Folder**: Browse/Paste the path where you want your notes to appear (e.g., `~/Obsidian/Inbox`).
-3.  **Save**: Click **Save Changes**.
+4.  **Save**: Click **Save Changes**.
 
 ---
 
@@ -68,11 +69,15 @@ Perfect for Dataview users in Obsidian.
 - Enable **Generate YAML Front Matter**.
 - Customize keys: `title`, `author`, `tags`, `date_created`.
 
-### Manual Scanning
+### Manual Scanning & Commands
 If you dropped a bunch of files while the app was closed:
 1.  Right-click the **Tray Icon**.
 2.  Select **🔍 Scan Now**.
 3.  The app will process all pending files immediately.
+
+**Advanced CLI Commands**:
+- `./annotes --init`: Resets or initializes configuration folders and paths.
+- `./annotes --scan`: Runs a one-time manual scan and exits without showing the tray/UI.
 
 ### Exporting Logs
 Need to report a bug?
@@ -100,8 +105,9 @@ We are constantly improving Annotes. Here are features planned for upcoming rele
 *A: Currently, Annotes focuses on text layers. For scanned images, run OCR on your PDF first.*
 
 **Q: Where is the config file?**
-*A: Settings are stored in `src/config.yaml` relative to the application, but you should always use the Dashboard to edit them.*
+*A: Settings are stored in your home directory at `~/.annotes/config.yaml`. You can edit this directly or use the Web Dashboard.*
 
 ---
 
 **Happy Reading!** 📚
+
